@@ -1,0 +1,150 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>fj-quarkus-bom</artifactId>
+
+	<parent>
+		<groupId>org.fugerit.java</groupId>
+		<artifactId>fj-bom</artifactId>
+		<version>1.0.0</version>
+		<relativePath></relativePath>
+	</parent>
+
+	<version>0.1.0</version>
+	<packaging>pom</packaging>
+
+	<name>fj-quarkus-bom</name>
+	<description>Basic bom for quarkus projects</description>
+	<url>https://www.fugerit.org/perm/jupiter/</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java-version-compliance>11</java-version-compliance>
+	    <maven.compiler.release>${java-version-compliance}</maven.compiler.release>
+	    <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
+		<quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
+		<quarkus.platform.version>2.16.6.Final</quarkus.platform.version> 	
+	    <fj-version>8.0.10-rc.003</fj-version>
+	</properties>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<organization>
+		<url>https://www.fugerit.org</url>
+		<name>Fugerit</name>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>Matteo a.k.a. Fugerit</name>
+			<email>m@fugerit.org</email>
+			<organization>Fugerit</organization>
+			<organizationUrl>https://www.fugerit.org</organizationUrl>
+		</developer>
+		<developer>
+			<name>Daneel</name>
+			<email>d@fugerit.org</email>
+			<organization>Fugerit</organization>
+			<organizationUrl>https://www.fugerit.org</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/fugerit-org/fj-quarkus-bom.git</connection>
+		<developerConnection>scm:git:ssh://github.com/fugerit-org/fj-quarkus-bom.git</developerConnection>
+		<url>http://github.com/fugerit-org/fj-quarkus-bom</url>
+	</scm>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<dependencyManagement>
+	
+		<dependencies>
+
+			<dependency>
+				<groupId>${quarkus.platform.group-id}</groupId>
+				<artifactId>${quarkus.platform.artifact-id}</artifactId>
+				<version>${quarkus.platform.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-core</artifactId>
+				<version>${fj-version}</version>
+			</dependency>		
+
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-core-jvfs</artifactId>
+				<version>${fj-version}</version>
+			</dependency>			
+
+		</dependencies>
+
+	</dependencyManagement>
+
+	<build>
+
+		<pluginManagement>
+		
+			<plugins>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${mvn-jar-version}</version>
+				</plugin>	
+			
+			</plugins>
+		
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>${quarkus.platform.group-id}</groupId>
+				<artifactId>quarkus-maven-plugin</artifactId>
+				<version>${quarkus.platform.version}</version>
+				<extensions>true</extensions>
+				<executions>
+					<execution>
+						<goals>
+							<goal>build</goal>
+							<goal>generate-code</goal>
+							<goal>generate-code-tests</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+	</build>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+
+	<profiles>
+
+	</profiles>
+	
+</project>
